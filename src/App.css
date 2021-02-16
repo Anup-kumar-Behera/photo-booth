@@ -1,38 +1,110 @@
-.App {
-  text-align: center;
+@import "~react-image-gallery/styles/css/image-gallery.css";
+.a:hover{
+  background-color: red;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.app{
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.video_container{
+  margin: 40px;
+  border:1px solid gray;
+}
+.container{
+  position: relative;
+  justify-content:center;
+}
+.input-container{
+  margin-top: 20px;
+  margin-left: 40px;
+}
+.dp{
+  position: relative;
+}
+.icon-t{
+  position: relative;
+  margin-left:-20px;
+}
+.show-image img:hover{
+  height:110px;
+  width:110px;
+}
+.space{
+  margin-left: 100px;
+}
+.flex-container{
+  margin-top:20px;
+  display:flex;
+  width:500px;
+  margin:10px auto;
+  overflow-x: auto;
+  flex-direction:row;
+}
+::-webkit-scrollbar{
+  height:5px;
+}
+::-webkit-scrollbar-track{
+  background:white;
+}
+::-webkit-scrollbar-thumb{
+  background-image: linear-gradient(gray, gray );
+  border-radius: 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.show-image{
+  margin-top:20px;
+  flex-shrink: 0;
+  height: 110px;
+}
+.menu-btn{
+  margin-left: -8px;
+}
+img{
+
+  margin-right: 20px;
+  height: 100px;
+  width: 100px;
+}
+
+.dropbtn {
+  font-size: 30px;
+  border: none;
+}
+
+.dropup {
+  position: sticky;
+  /* top:1px; */
+  margin-left:-22px;
+  display: inline-block;
+}
+
+.dropup-content {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  top:1px;
+  background-color: #e0ecee;
+}
+
+.dropup-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.dropup-content a:hover {background-color: #ddd}
+
+.dropup:hover .dropup-content {
+  display: block;
+}
+
+.dropup:hover .dropbtn {
+}
+.modal-content{
+  background-color: rgb(31, 23, 23);
+  height: auto;
+  margin:auto;
+  margin-top:150px;
+  width: 400px;
 }
