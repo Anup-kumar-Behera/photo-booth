@@ -3,7 +3,6 @@ import Show from './components/show'
 import './App.css'
 import Geolocation from './components/Geolocation'
 import Navbar from './components/navbar'
-import Modal_comp from './components/Modal'
 
 const  App = () => {
   
@@ -11,7 +10,7 @@ const  App = () => {
     
     <div className="app">
      <Show />
-     {/* <Geolocation /> */}
+     <Geolocation />
      {/* <Modal_comp /> */}
     </div>
   )

@@ -3,7 +3,6 @@ import Webcam from 'react-webcam'
 import {SRLWrapper} from 'simple-react-lightbox'
 import Navbar from './navbar'
 import Geolocation from './Geolocation'
-import Modal_comp from './Modal'
 import Modal from 'react-modal'
 class Show extends Component {
     constructor(props){
@@ -18,51 +17,21 @@ class Show extends Component {
         this.webcamRef = null;
         this.setRef = (prop) => {
             this.webcamRef = prop
-            console.log(this.webcamRef)
         }
-        this._onButtonClick = this._onButtonClick.bind(this);
     };
     count = 0
-    _onButtonClick() {
-        this.setState({
-          showComponent: true,
-        });
-      }
-    Download = (src) => {
-        const img = new Image();
-    
-    
-            img.crossOrigin = 'anonymous'
-            img.src = src;
-            img.onload = () => {
-    
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-    
-            const a = document.createElement('a');
-            a.download = 'download.png';
-            a.href = canvas.toDataURL('image/png');
-            a.click();
-            };
-        
-      }
-      
+
     capture = () => {
         const img = this.webcamRef.getScreenshot()
         this.setState(prevState => {return (
             {imgSrc:[...prevState.imgSrc, {img:img,date : new Date(), deviceId:MediaDeviceInfo.deviceId}]}
         )})
-        console.log(this.state.imgSrc)
     }
     forceUpdateHandler(){
         this.forceUpdate();
     }
     remove = (image) => {
         this.state.imgSrc.splice(this.state.imgSrc.indexOf(image), 1)
-        console.log(this.state.imgSrc)
         this.forceUpdateHandler()
     }
     modes = () =>{
@@ -73,8 +42,9 @@ class Show extends Component {
     }
    
     // info = (image) => (<div><Modal_comp /></div>)
-    handleModal = () => {
+    handleModal = (prop) => {
         this.setState({isModalOpen:true})
+        console.log("date",prop.date)
     }
 
     render() {
@@ -108,9 +78,9 @@ class Show extends Component {
                                     <div className="dropup">
                                         <a href="#" className="dropbtn"><span class="material-icons">more_vert</span></a>
                                         <div className="dropup-content">
-                                            <a href="#"><span className="material-icons">download</span></a>
+                                            <a href={image.img} download="image 101"><span className="material-icons">download</span></a>
                                             <a href="#" onClick={() => this.remove(image)}><span className="material-icons">delete</span></a>
-                                            <a href="#" onClick={() => this.handleModal()}><span className="material-icons">info</span></a>
+                                            <a href="#" onClick={() => this.handleModal(image)}><span className="material-icons">info</span></a>
                                             <div className="d-flex mx-auto">
                                                 <Modal isOpen={this.state.isModalOpen} 
                                                 shouldCloseOnOverlayClick={true} 
@@ -122,11 +92,13 @@ class Show extends Component {
                                                 }}
                                                 className="modal-content"
                                                 >
-                                                    <h3>Date & time:</h3>
-                                                    <h3>Location: </h3>
-                                                    <h3>Ip Address: </h3>
-                                                    <h3>Device Id: </h3>
-                                                    <h3>Geolocation: </h3>
+                                                    <h5>Date & time:
+                                                        {this.state.imgSrc.date}
+                                                        </h5>
+                                                    <h5>Location: </h5>
+                                                    <h5>Ip Address: </h5>
+                                                    <h5>Device Id: </h5>
+                                                    <h5>Geolocation:  </h5>
                                                     <button onClick={() => this.setState({isModalOpen:false})}>Close</button>
                                                 </Modal>
                                             </div>
