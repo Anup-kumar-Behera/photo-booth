@@ -1,9 +1,10 @@
-import React, { Component, useRef} from 'react'
+import React, { Component} from 'react'
 import Webcam from 'react-webcam'
 import {SRLWrapper} from 'simple-react-lightbox'
-import Navbar from './navbar'
-import Geolocation from './Geolocation'
 import Modal from 'react-modal'
+import localIpUrl from 'local-ip-url';
+
+Modal.setAppElement('#root')
 class Show extends Component {
     constructor(props){
         super(props);
@@ -20,7 +21,7 @@ class Show extends Component {
         }
     };
     count = 0
-
+    ip_address = localIpUrl('public', 'ipv4')
     capture = () => {
         const img = this.webcamRef.getScreenshot()
         this.setState(prevState => {return (
@@ -43,8 +44,9 @@ class Show extends Component {
    
     // info = (image) => (<div><Modal_comp /></div>)
     handleModal = (prop) => {
-        this.setState({isModalOpen:true})
-        console.log("date",prop.date)
+        this.setState(prevState => {return {
+            ...prevState, isModalOpen:true
+        }})
     }
 
     render() {
@@ -87,18 +89,13 @@ class Show extends Component {
                                                 onRequestClose={() => this.setState({isModalOpen:false})}
                                                 style={{
                                                     content:{
-                                                        color:'white'
+                                                        color:'black'
                                                     }
                                                 }}
-                                                className="modal-content"
-                                                >
-                                                    <h5>Date & time:
-                                                        {this.state.imgSrc.date}
-                                                        </h5>
-                                                    <h5>Location: </h5>
-                                                    <h5>Ip Address: </h5>
-                                                    <h5>Device Id: </h5>
-                                                    <h5>Geolocation:  </h5>
+                                                className="modal-content">
+        
+                                                    <p>Date & time:  <strong>{image.date.toString()}</strong></p>
+                                                    <p>Ip Address: <strong>{this.ip_address}</strong></p>
                                                     <button onClick={() => this.setState({isModalOpen:false})}>Close</button>
                                                 </Modal>
                                             </div>
