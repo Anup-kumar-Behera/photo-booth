@@ -3,6 +3,7 @@ import Webcam from 'react-webcam'
 import {SRLWrapper} from 'simple-react-lightbox'
 import Modal from 'react-modal'
 import localIpUrl from 'local-ip-url';
+import imageToBase64 from 'image-to-base64';
 
 Modal.setAppElement('#root')
 class Show extends Component {
@@ -76,7 +77,7 @@ class Show extends Component {
                                     <div className="dropup">
                                         <a href="#" className="dropbtn"><span class="material-icons">more_vert</span></a>
                                         <div className="dropup-content">
-                                            <a href={image.img} download="image 101"><span className="material-icons">download</span></a>
+                                            <a href={image.img} download={index + "_" + image.date.toString().slice(0, 16)}><span className="material-icons">download</span></a>
                                             <a href="#" onClick={() => this.remove(image)}><span className="material-icons">delete</span></a>
                                             <a href="#" onClick={() => this.handleModal(image)}><span className="material-icons">info</span></a>
                                             <div className="d-flex mx-auto">
