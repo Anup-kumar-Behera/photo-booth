@@ -37,9 +37,6 @@ class Show extends Component {
     }
     modes = () =>{
         this.state.count?  (this.setState({facingMode:"user", count:false})) : (this.setState({facingMode:{ exact: "environment" }, count : true}))
-              
-        console.log(this.state.count)
-        console.log(this.state.facingMode)
     }
    
     // info = (image) => (<div><Modal_comp /></div>)
@@ -58,7 +55,6 @@ class Show extends Component {
                     ref={this.setRef}
                     height={400}
                     width={500}
-                    facingmode={this.state.facingMode}
                     videoConstraints = {{
                         facingMode: this.state.facingMode
                     }}
