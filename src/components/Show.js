@@ -4,6 +4,7 @@ import {SRLWrapper} from 'simple-react-lightbox'
 import Modal from 'react-modal'
 import localIpUrl from 'local-ip-url';
 
+
 Modal.setAppElement('#root')
 class Show extends Component {
     constructor(props){
@@ -38,11 +39,9 @@ class Show extends Component {
     modes = () =>{
         this.state.count?  (this.setState({facingMode:"user", count:false})) : (this.setState({facingMode:{ exact: "environment" }, count : true}))
               
-        console.log(this.state.count)
-        console.log(this.state.facingMode)
+        // console.log(this.state.count)
+        // console.log(this.state.facingMode)
     }
-   
-    // info = (image) => (<div><Modal_comp /></div>)
     handleModal = (prop) => {
         this.setState(prevState => {return {
             ...prevState, isModalOpen:true
@@ -64,9 +63,9 @@ class Show extends Component {
                     screenshotFormat="image/jpeg"/>
                 </div>
                 <div className="d-flex justify-content-center">
-                    <a className="waves-effect waves-light btn-small b1" onClick={this.modes}><span class="material-icons" style = {{marginTop:"4px"}}>cached</span></a>
+                    <a className="waves-effect waves-light btn-small b1" onClick={this.modes}><span className="material-icons" style = {{marginTop:"4px"}}>cached</span></a>
                     <p className="space"></p>
-                    <a className="waves-effect waves-light btn-small b1" onClick={this.capture}><span class="material-icons" style = {{marginTop:"4px"}}>camera_enhance</span></a>
+                    <a className="waves-effect waves-light btn-small b1" onClick={this.capture}><span className="material-icons" style = {{marginTop:"4px"}}>camera_enhance</span></a>
                 </div>
 
                 <SRLWrapper>
@@ -77,7 +76,7 @@ class Show extends Component {
                                     <a href={image.img}><img src={image.img} className="rounded img border border-info" alt = ""/></a>
                                     
                                     <div className="dropup">
-                                        <a href="#" className="dropbtn"><span class="material-icons">more_vert</span></a>
+                                        <a href="#" className="dropbtn"><span className="material-icons">more_vert</span></a>
                                         <div className="dropup-content">
                                             <a href={image.img} download="image 101"><span className="material-icons">download</span></a>
                                             <a href="#" onClick={() => this.remove(image)}><span className="material-icons">delete</span></a>
